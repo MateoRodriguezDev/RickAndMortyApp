@@ -12,7 +12,7 @@ import { useFavourites } from "../hooks/useFavourites";
 export default function Favourites() {
   const data = useCharactersFetch();
 
-  const {state} = useFavourites()
+  const { state } = useFavourites();
 
   const characters = state.list;
 
@@ -21,11 +21,16 @@ export default function Favourites() {
       {data.characters.length === 0 ? (
         <ActivityIndicator size={"large"} />
       ) : (
-        <FlatList
-          data={characters}
-          keyExtractor={(character) => character.id}
-          renderItem={({ item }) => <CharacterCard character={item} favourite={true} />}
-        />
+        <>
+          
+          <FlatList
+            data={characters}
+            keyExtractor={(character) => character.id}
+            renderItem={({ item }) => (
+              <CharacterCard character={item} favourite={true} />
+            )}
+          />
+        </>
       )}
     </View>
   );

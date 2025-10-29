@@ -7,12 +7,16 @@ export default function useCharactersFetch() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true)
-    getCharacters().then((results) => setCharacters(results));
-    setIsLoading(false)
+    setIsLoading(true);
+    getFilteredCharacters('')
+    setIsLoading(false);
   }, []);
 
-  
+  function getFilteredCharacters(filter) {
+    setIsLoading(true);
+    getCharacters(filter).then((results) => setCharacters(results));
+    setIsLoading(false);
+  }
 
-  return {characters, character, isLoading};
+  return { characters, character, isLoading, getFilteredCharacters };
 }

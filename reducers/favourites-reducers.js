@@ -1,3 +1,8 @@
+import { getData, storeData } from "../service/storeData"
+
+
+const storagedCharacters = getData()
+
 export const initialState = {
     list: [],
     activeItem: ''
@@ -27,6 +32,28 @@ export const favouritesReducer = (
             list: state.list.filter(item => item.id !== action.payload.id)
         }
     }
+
+    if(action.type === 'load-storage'){
+        return {
+            ...state,
+            list: action.payload.list
+        }
+    }
+
+    if(action.type === 'delete-storage'){
+        return {
+            ...state,
+            list: []
+        }
+    }
+
+    if(action.type === 'select-item'){
+        return {
+            ...state,
+            activeItem: action.payload.id
+        }
+    }
+
 
     return state;
 }

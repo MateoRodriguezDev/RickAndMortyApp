@@ -3,7 +3,6 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 import { useFavourites } from "../hooks/useFavourites";
 
 export function CharacterCard({ character, favourite }) {
-  console.log(favourite)
   const [isFavorite, setIsFavorite] = useState(favourite || false);
   const { dispatch } = useFavourites();
 
