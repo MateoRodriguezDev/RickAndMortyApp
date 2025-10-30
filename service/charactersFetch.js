@@ -11,5 +11,6 @@ export const getCharacters = async (filter) => {
 export const getCharacter = async (id) => {
         const response = await api.get(`/character/${id}`)
 
+        console.log(response.data)
         return response.data
   };

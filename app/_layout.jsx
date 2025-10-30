@@ -6,9 +6,12 @@ import { FavouritesProvider } from "../context/FavouritesContext";
 import NetInfo from "@react-native-community/netinfo";
 import { router } from "expo-router";
 import { useEffect } from "react";
+import { useFavourites } from "../hooks/useFavourites";
 
 export default function Layout() {
   const insets = useSafeAreaInsets();
+
+
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {

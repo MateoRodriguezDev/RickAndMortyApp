@@ -1,11 +1,6 @@
-import { getData, storeData } from "../service/storeData"
-
-
-const storagedCharacters = getData()
-
 export const initialState = {
     list: [],
-    activeItem: ''
+    activeCharacter: {}
 }
 
 const createItem = (item) => {
@@ -47,10 +42,10 @@ export const favouritesReducer = (
         }
     }
 
-    if(action.type === 'select-item'){
+    if(action.type === 'save-character'){
         return {
             ...state,
-            activeItem: action.payload.id
+            activeCharacter: action.payload.character
         }
     }
 

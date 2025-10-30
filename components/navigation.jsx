@@ -7,11 +7,16 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { View, Pressable, Text } from "react-native";
 import useCharactersFetch from "../hooks/useCharactersFetch";
 import { useFavourites } from "../hooks/useFavourites";
+import { useEffect } from "react";
 
 export default function Navigation() {
   const data = useCharactersFetch();
 
   const { state } = useFavourites();
+
+  useEffect(() => {
+    
+  }, [state])
 
   const characters = state.list;
 

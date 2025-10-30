@@ -1,10 +1,21 @@
 import { useEffect, useReducer, useState } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { useFavourites } from "../hooks/useFavourites";
+import { router } from "expo-router";
+import { getCharacter } from "../service/charactersFetch";
 
-export function CharacterCard({ character, favourite }) {
-  const [isFavorite, setIsFavorite] = useState(favourite || false);
-  const { dispatch } = useFavourites();
+export function CharacterCard({ character }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { state, dispatch } = useFavourites();
+
+
+  useEffect(() => {
+    state.list.map((item) => {
+      if(item.id === character.id){
+        setIsFavorite(true)
+      }
+    })
+  },[])
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
@@ -16,12 +27,24 @@ export function CharacterCard({ character, favourite }) {
 
   };
 
+  const handleSelectCharacter = async (id) => {
+    const character = await getCharacter(id)
+    dispatch({ type: 'save-character', payload: { character } });
+    router.push('/characterView')
+  }
+
   return (
     <View className="bg-slate-300 rounded-2xl items-center p-4 mb-3">
-      <Image
+      
+      <TouchableOpacity
+        onPress={() => handleSelectCharacter(character.id)}
+      >
+        <Image
         source={{ uri: character.image }}
         className="w-40 h-40 rounded-full"
       />
+      </TouchableOpacity>
+      
       <View className="space-y-2 ">
         <Text className="text-center font-bold text-xl mt-2">
           {character.name}
