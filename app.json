@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.mateo7722.RickAndMortyApp"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -29,6 +30,12 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "bd066032-274c-4b3a-9a15-79f5920dd641"
+      }
+    }
   }
 }
